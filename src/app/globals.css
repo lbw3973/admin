@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  body {
+    height: auto;
+    color: #242424;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+  }
+
+  section {
+    background-color: #f3f3f3;
+  }
+}
+
+@layer components {
+  .modal_background {
+    @apply fixed left-0 top-0 h-full w-full bg-black opacity-40;
+  }
+
+  .modal {
+    @apply fixed -translate-y-1/2 top-1/2 left-1/2 w-full min-w-[390px] max-w-[900px] -translate-x-1/2 rounded-md bg-white px-4 py-8;
+  }
+
+  .popup {
+    @apply fixed left-1/2 top-1/2 min-h-[300px] w-[312px] -translate-x-1/2 -translate-y-1/2 rounded-md bg-white px-5 py-10 shadow-md;
+  }
+
+  .popup .popup-button {
+    @apply rounded-md bg-primary-normal text-white;
+  }
+
+  .popup .cancel-button {
+    @apply w-1/2 rounded-md border-1 border-black py-3 bg-background-secondary;
+  }
+}
