@@ -17,7 +17,7 @@ function AdminInfoModal() {
         <div className="mb-4 flex gap-3">
           {/* <Image/> */}
           <div className="h-6 w-6 bg-black"></div>
-          <p>머리브릿지로 돌아가기기</p>
+          <p>머리브릿지로 돌아가기</p>
         </div>
         <div className="flex gap-3">
           {/* <Image/> */}
