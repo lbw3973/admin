@@ -3,16 +3,13 @@ export interface IJoinList {
     status: number;
     msg: string;
     data: {
-      count: number;
-      page: {
-        curPage: number;
-        empty: boolean;
-        first: boolean;
-        last: boolean;
-        list: IJoinListData[];
-        totalElements: number;
-        totalPages: number;
-      };
+      curPage: number;
+      empty: boolean;
+      first: boolean;
+      last: boolean;
+      list: IJoinListData[];
+      totalElements: number;
+      totalPages: number;
     };
   };
 }
