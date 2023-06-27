@@ -27,13 +27,13 @@ function Counseling() {
   }, [isSuccess]);
 
   return (
-    <section className="mx-auto h-full w-[1084px] bg-white shadow-md">
+    <>
       <div className="flex h-[572px] w-full border-b-1 border-[#E0E0E0]">
         <CounselingList nowPage={nowPage} reservationList={data?.list} setSeeMore={setSeeMore} />
         <SeeMore seeMore={seeMore} setSeeMore={setSeeMore} />
       </div>
       <Pagination className="py-2 text-center" onChange={onChange} defaultCurrent={1} total={totalData} />
-    </section>
+    </>
   );
 }
 

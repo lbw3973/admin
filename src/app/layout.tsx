@@ -16,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={noto.className}>
         <ReactQueryProvider>
           <FixedLayout>
-            <section className="mt-[50px] p-10">{children}</section>
+            <main className="mt-[50px] p-10">
+              <section className="mx-auto h-full w-[1084px] bg-white shadow-md">{children}</section>
+            </main>
           </FixedLayout>
         </ReactQueryProvider>
       </body>
