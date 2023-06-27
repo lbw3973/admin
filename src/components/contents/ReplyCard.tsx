@@ -7,7 +7,7 @@ import ReReplyCard from "./ReReplyCard";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteReply } from "@/app/apis/contents";
 
-function ReplyCard({ contentQueryKey, reply }: { contentQueryKey: string[]; reply: IReply }) {
+function ReplyCard({ contentQueryKey, reply }: { contentQueryKey: [string, number]; reply: IReply }) {
   const { id, profile, name, createdAt, reReply, content } = reply;
   const queryClient = useQueryClient();
   const { mutate } = useMutation(deleteReply, {

@@ -6,7 +6,7 @@ import profileImg from "/public/profile.svg";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteReReply } from "@/app/apis/contents";
 
-function ReReplyCard({ contentQueryKey, rereply }: { contentQueryKey: string[]; rereply: IReReply }) {
+function ReReplyCard({ contentQueryKey, rereply }: { contentQueryKey: [string, number]; rereply: IReReply }) {
   const { id, profile, name, createdAt, content } = rereply;
   const queryClient = useQueryClient();
   const { mutate } = useMutation(deleteReReply, {
