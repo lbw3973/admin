@@ -34,5 +34,4 @@ export interface ICounselingListProps {
 
 export interface ISeeMoreProps {
   seeMore: IReservationList | null;
-  setSeeMore: Dispatch<SetStateAction<IReservationList | null>>;
 }
