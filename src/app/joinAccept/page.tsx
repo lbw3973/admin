@@ -14,7 +14,6 @@ function JoinAccept() {
   const { data, isSuccess } = useQuery<unknown, AxiosError, IJoinList>(["joinList", nowPage], () => {
     return getJoinList(nowPage);
   });
-  // console.log(data?.data.data.list);
 
   const onChange = (page: number) => {
     setNowPage(page - 1);
@@ -22,7 +21,7 @@ function JoinAccept() {
 
   useEffect(() => {
     if (isSuccess && data) {
-      setTotalData(data.data.data.totalElements);
+      setTotalData(data.totalElements);
     }
   }, [isSuccess]);
 
@@ -31,11 +30,11 @@ function JoinAccept() {
       <div className="flex h-[572px] w-full border-b-1 border-[#E0E0E0]">
         <table className="h-fit table-fixed border-1">
           <TableHeader />
-          {data?.data.data.list.map((item, index) => (
+          {data?.list.map((item, index) => (
             <TableBody key={item.id} item={item} index={index + 1} />
           ))}
         </table>
-        {data?.data.data.empty && (
+        {data?.empty && (
           <div className="mt-20 w-[1084px] text-center text-2xl font-bold">현재 회원가입 승인 요청이 없습니다.</div>
         )}
       </div>
