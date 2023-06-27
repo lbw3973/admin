@@ -25,5 +25,43 @@ export interface IContentsList {
 export interface IContentsListProps {
   nowPage: number;
   contentsList: IContentsList[];
-  setSeeContent: Dispatch<SetStateAction<IContentsList | null>>;
+  setContentId: Dispatch<SetStateAction<number | null>>;
+}
+
+export interface IContentDetail {
+  id: number;
+  isBookmark: boolean;
+  thumbnail: string;
+  tag1: string;
+  tag2: string;
+  title: string;
+  createdAt: string;
+  pbId: number;
+  name: string;
+  profile: string;
+  speciality1: string | null;
+  speciality2: string | null;
+  career: number;
+  content: string;
+  reply: IReply[];
+}
+
+export interface IReply {
+  authorId: number;
+  content: string;
+  createdAt: string;
+  id: number;
+  name: string;
+  profile: string | null;
+  reReply: IReReply[];
+}
+export interface IReReply {
+  authorId: number;
+  content: string;
+  createdAt: string;
+  id: number;
+  name: string;
+  profile: string | null;
+  role: string;
+  uniqueValue: number;
 }
