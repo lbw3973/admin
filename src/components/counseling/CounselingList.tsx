@@ -1,17 +1,8 @@
-import { IReservationList } from "@/types/counseling";
-import { Dispatch, SetStateAction } from "react";
+import { ICounselingListProps } from "@/types/counseling";
 
 const TH_STYLE = "border-r-1 border-[#E0E0E0] font-normal border-collapse";
 const TD_style = "border-r-1 border-b-1 border-[#E0E0E0]";
-function CounselingList({
-  nowPage,
-  reservationList,
-  setSeeMore,
-}: {
-  nowPage: number;
-  reservationList: IReservationList[] | undefined;
-  setSeeMore: Dispatch<SetStateAction<IReservationList | null>>;
-}) {
+function CounselingList({ nowPage, reservationList, setSeeMore }: ICounselingListProps) {
   return (
     <>
       <table className="h-fit w-1/2 table-fixed">

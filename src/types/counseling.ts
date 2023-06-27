@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface IReservationListData {
   curPage: number;
   empty: boolean;
@@ -23,3 +25,14 @@ export interface IReservationList {
 }
 
 export type TReserveStatus = "예약신청" | "예약확정" | "상담완료" | "예약취소";
+
+export interface ICounselingListProps {
+  nowPage: number;
+  reservationList: IReservationList[] | undefined;
+  setSeeMore: Dispatch<SetStateAction<IReservationList | null>>;
+}
+
+export interface ISeeMoreProps {
+  seeMore: IReservationList | null;
+  setSeeMore: Dispatch<SetStateAction<IReservationList | null>>;
+}

@@ -1,14 +1,7 @@
-import { IReservationList } from "@/types/counseling";
+import { ISeeMoreProps } from "@/types/counseling";
 import SeeMoreCards from "./SeeMoreCards";
-import { Dispatch, SetStateAction } from "react";
 
-function SeeMore({
-  seeMore,
-  setSeeMore,
-}: {
-  seeMore: IReservationList | null;
-  setSeeMore: Dispatch<SetStateAction<IReservationList | null>>;
-}) {
+function SeeMore({ seeMore, setSeeMore }: ISeeMoreProps) {
   return (
     <div className="w-1/2 justify-self-end border-l-1 border-[#E0E0E0]">
       <div className="flex h-[52px] items-center justify-between bg-[#425C6F] px-4">
