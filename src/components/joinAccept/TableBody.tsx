@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const TH_STYLE = "rounded-[1px] h-[52px] border-r-1 border-b-1 border-[#E0E0E0] font-normal py-1 px-2";
 
-function TableBody({ item }: { item: IJoinListData }) {
+function TableBody({ item, index }: { item: IJoinListData; index: number }) {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
@@ -51,9 +51,9 @@ function TableBody({ item }: { item: IJoinListData }) {
 
   return (
     <>
-      <tbody className="border-t-1 border-[#E0E0E0] text-center">
+      <tbody className="border-t-1 border-[#E0E0E0] bg-white text-center">
         <tr>
-          <td className={`${TH_STYLE} w-[52px] border-l-1`}>{item.id}</td>
+          <td className={`${TH_STYLE} w-[52px] border-l-1`}>{index}</td>
           <td className={`${TH_STYLE} w-[200px]`}>{item.email}</td>
           <td className={`${TH_STYLE} w-[90px]`}>{item.name}</td>
           <td className={`${TH_STYLE} w-[170px]`}>{item.phoneNumber.replace(/(\d{3})(\d{4})(\d)/, "$1-$2-$3")}</td>
