@@ -5,11 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Pagination } from "antd";
 import React, { useEffect, useState } from "react";
 import { getReservations } from "../apis/reservations";
-import { IReservationListData } from "@/types/counseling";
+import { IReservationList, IReservationListData } from "@/types/counseling";
 import { AxiosError } from "axios";
 
 function Counseling() {
-  const [seeMore, setSeeMore] = useState(null);
+  const [seeMore, setSeeMore] = useState<IReservationList | null>(null);
   const [totalData, setTotalData] = useState(0);
   const [nowPage, setNowPage] = useState(0);
   const { data, isSuccess } = useQuery<IReservationListData, AxiosError>(["reservationList", nowPage], () => {
@@ -25,11 +25,12 @@ function Counseling() {
       setTotalData(data.totalElements);
     }
   }, [isSuccess]);
+
   return (
     <section className="mx-auto h-full w-[1084px] bg-white shadow-md">
       <div className="flex h-[572px] w-full border-b-1 border-[#E0E0E0]">
-        {data && <CounselingList nowPage={nowPage} reservationList={data.list} />}
-        <SeeMore />
+        <CounselingList nowPage={nowPage} reservationList={data?.list} setSeeMore={setSeeMore} />
+        <SeeMore seeMore={seeMore} setSeeMore={setSeeMore} />
       </div>
       <Pagination className="py-2 text-center" onChange={onChange} defaultCurrent={1} total={totalData} />
     </section>
