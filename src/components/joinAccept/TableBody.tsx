@@ -6,7 +6,7 @@ import { AccpetJoinPB } from "@/app/apis/joinAccept";
 import ButtonModal from "../common/ButtonModal";
 import Image from "next/image";
 
-const TH_STYLE = "rounded-[1px] h-[52px] border-r-1 border-b-1 border-[#E0E0E0] font-normal py-1 px-2";
+const TH_STYLE = "rounded-[1px] h-[52px] border-r-1 border-[#E0E0E0] font-normal py-1 px-2";
 
 function TableBody({ item, index }: { item: IJoinListData; index: number }) {
   const [isCardOpen, setIsCardOpen] = useState(false);
@@ -51,7 +51,7 @@ function TableBody({ item, index }: { item: IJoinListData; index: number }) {
 
   return (
     <>
-      <tbody className="border-t-1 border-[#E0E0E0] bg-white text-center">
+      <tbody className="h-[52px] border-t-1 border-[#E0E0E0] text-center">
         <tr>
           <td className={`${TH_STYLE} w-[52px] border-l-1`}>{index}</td>
           <td className={`${TH_STYLE} w-[200px]`}>{item.email}</td>
