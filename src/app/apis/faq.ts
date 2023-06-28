@@ -27,7 +27,7 @@ interface CreateFaqProps {
   label: string;
 }
 
-interface UpdateFaqProps extends CreateFaqProps {
+export interface UpdateFaqProps extends CreateFaqProps {
   id: number;
 }
 
