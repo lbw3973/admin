@@ -30,6 +30,10 @@ function CreateNoticePage() {
   };
 
   const createHandler = () => {
+    if (createState.title === "" || createState.content === "") {
+      alert("작성하지 않은 곳이 있습니다. 다시 확인해주세요.");
+      return;
+    }
     createMutate(createState);
   };
   return (
@@ -55,7 +59,7 @@ function CreateNoticePage() {
         <div className="flex h-[614px] items-center justify-center p-4">
           <textarea
             onChange={contentChangeHandler}
-            className={"h-full w-full"}
+            className={"h-full w-full border-1"}
             name=""
             id=""
             cols={30}
