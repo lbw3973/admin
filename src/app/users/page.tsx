@@ -16,7 +16,6 @@ function Users() {
   const { data, isSuccess } = useQuery<unknown, AxiosError, IUserInfo>([userType, nowPage], () => {
     return getUserList({ type: userType, page: nowPage });
   });
-  console.log(data);
 
   const onChange = (page: number) => {
     setNowPage(page - 1);
@@ -26,7 +25,7 @@ function Users() {
     if (isSuccess && data) {
       setTotalData(data.totalElements);
     }
-  }, [isSuccess]);
+  }, [isSuccess, data]);
 
   return (
     <>
@@ -57,11 +56,11 @@ function Users() {
           <table className="h-fit table-fixed border-1">
             <TableHeader userType={userType} />
             {data?.list.map((item, index) => (
-              <TableBody item={item} index={index + 1} key={index} userType={userType} />
+              <TableBody item={item} index={index + 1} key={index} userType={userType} page={nowPage} />
             ))}
           </table>
         </div>
-        <Pagination className="py-2 text-center" onChange={onChange} defaultCurrent={1} total={totalData} />
+        <Pagination className="py-2 text-center" onChange={onChange} total={totalData} defaultCurrent={1} />
       </div>
     </>
   );
