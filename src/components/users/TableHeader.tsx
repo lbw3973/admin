@@ -11,7 +11,7 @@ function TableHeader({ userType }: { userType: USER_TYPE }) {
         <th className={`${TH_STYLE} w-[120px]`}>이름</th>
         <th className={`${TH_STYLE} w-[200px]`}>전화번호</th>
         <th className={`${TH_STYLE} w-[88px]`}>회원 유형</th>
-        {userType === USER_TYPE.USER && <th className={`${TH_STYLE} w-[240px]`}>관리자 여부</th>}
+        <th className={`${TH_STYLE} w-[240px]`}>관리자 여부</th>
         <th className={`${TH_STYLE} w-[181px]`}>탈퇴</th>
       </tr>
     </thead>

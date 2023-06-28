@@ -88,29 +88,33 @@ function TableBody({
           <td className={`${TH_STYLE} w-[120px]`}>{item.name}</td>
           <td className={`${TH_STYLE} w-[200px]`}>{item.phoneNumber.replace(/(\d{3})(\d{4})(\d)/, "$1-$2-$3")}</td>
           <td className={`${TH_STYLE} w-[88px]`}>{userType === USER_TYPE.PB ? "PB" : "투자자"}</td>
-          {userType === USER_TYPE.USER && (
-            <td
-              className={`${TH_STYLE} flex w-[240px] items-center justify-center gap-5 px-2 text-sm text-white`}
-              onClick={handleSetAdmin}
-            >
-              <button
-                id="User"
-                className={`h-7 w-[72px] rounded-[8px] ${
-                  item.isAdmin ? "border-1 border-[#335C64] bg-white text-[#355C64]" : "bg-[#335C64] text-white"
-                }`}
-              >
-                유저
-              </button>
-              <button
-                id="Admin"
-                className={`h-7 w-[72px] rounded-[8px] ${
-                  !item.isAdmin ? "border-1 border-[#335C64] bg-white text-[#355C64]" : "bg-[#335C64] text-white"
-                }`}
-              >
-                관리자
-              </button>
-            </td>
-          )}
+          <td
+            className={`${TH_STYLE} flex w-[240px] items-center justify-center gap-5 px-2 text-sm`}
+            onClick={handleSetAdmin}
+          >
+            {userType === USER_TYPE.USER ? (
+              <>
+                <button
+                  id="User"
+                  className={`h-7 w-[72px] rounded-[8px] ${
+                    item.isAdmin ? "border-1 border-[#335C64] bg-white text-[#355C64]" : "bg-[#335C64] text-white"
+                  }`}
+                >
+                  유저
+                </button>
+                <button
+                  id="Admin"
+                  className={`h-7 w-[72px] rounded-[8px] ${
+                    !item.isAdmin ? "border-1 border-[#335C64] bg-white text-[#355C64]" : "bg-[#335C64] text-white"
+                  }`}
+                >
+                  관리자
+                </button>
+              </>
+            ) : (
+              <p className="text-xs">PB에게는 관리자 권한을 부여할 수 없습니다.</p>
+            )}
+          </td>
           <td className={`${TH_STYLE} w-[181px]`}>
             <button
               onClick={handleWithdraw}
