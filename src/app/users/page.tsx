@@ -29,11 +29,7 @@ function Users() {
 
   return (
     <>
-      <div
-        className={`mx-auto mb-2.5 flex h-10 ${
-          userType === USER_TYPE.PB ? "w-[853px]" : "w-[1084px]"
-        } gap-4 text-sm font-bold`}
-      >
+      <div className={`my-2.5 ml-2.5 flex h-10 w-[1084px] gap-4 text-sm font-bold `}>
         <button
           onClick={() => setUserType(USER_TYPE.PB)}
           className={`w-24 rounded-[8px] shadow-md ${
@@ -51,7 +47,7 @@ function Users() {
           투자자
         </button>
       </div>
-      <div className={`mx-auto h-[750px] ${userType === USER_TYPE.PB ? "w-[853px]" : "w-[1084px]"} bg-white shadow-md`}>
+      <div className={`mx-auto h-[750px] w-[1084px] bg-white shadow-md`}>
         <div className="flex h-[583px] w-full border-b-1 border-[#E0E0E0]">
           <table className="h-fit table-fixed border-1">
             <TableHeader userType={userType} />
