@@ -2,6 +2,7 @@ import { IContentsListProps } from "@/types/contents";
 
 const TD_style = "border-r-1 border-b-1 border-[#E0E0E0]";
 function ContentsList({ nowPage, contentsList, setContentId }: IContentsListProps) {
+  if (!contentsList) return;
   return (
     <>
       {contentsList.map((item, index) => (
