@@ -12,7 +12,7 @@ function NoticePage() {
 
   const [totalData, setTotalData] = useState(0);
   const [nowPage, setNowPage] = useState(0);
-  const { data: noticeList, isSuccess } = useQuery(["notice"], () => {
+  const { data: noticeList, isSuccess } = useQuery(["notice", nowPage], () => {
     return getNoticeList(nowPage);
   });
 
