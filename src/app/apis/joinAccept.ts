@@ -21,7 +21,7 @@ export const getJoinList = async (pageParam: number) => {
 
 export const AccpetJoinPB = async ({ approve, id }: { approve: boolean; id: string }) => {
   try {
-    const res = await instance.post(`admin/pb/${id}?approve=${approve}`);
+    const res = await instance.post(`/admin/pb/${id}?approve=${approve}`);
     return res;
   } catch (error: any) {
     throw new AxiosError(error);
