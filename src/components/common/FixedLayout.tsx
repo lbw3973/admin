@@ -26,7 +26,7 @@ function FixedLayout({ children }: { children: React.ReactNode }) {
   if (pathName !== "/login") {
     const accessToken = getCookie("Authorization");
     if (!accessToken) {
-      router.push("/login");
+      redirect("/login");
     }
   }
 

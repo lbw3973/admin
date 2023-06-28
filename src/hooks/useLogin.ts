@@ -2,10 +2,8 @@ import { userLogin } from "@/app/apis/auth";
 import { useAuthenticationStore } from "@/store/authenticationStore";
 import { IModalContent } from "@/types/common";
 import { IResponseErrorData400, IResponseErrorData404 } from "@/types/login";
-import { setCookie } from "@/utils/cookies";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { usePathname, useRouter } from "next/navigation";
 
 export const useLogin = (
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
