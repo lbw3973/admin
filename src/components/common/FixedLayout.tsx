@@ -1,14 +1,15 @@
 "use client";
 import Image from "next/image";
 import Logo from "/public/Logo.png";
-import { usePathname, useRouter } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import { ICategoryItem } from "@/types/fixedLayout";
 import admin from "public/admin.svg";
 import { MouseEvent, useState } from "react";
 import AdminInfoModal from "./AdminInfoModal";
+import { getCookie } from "@/utils/cookies";
 
 const category = [
-  { title: "대시보드", path: "/dashBoard" },
+  { title: "대시보드", path: "/" },
   { title: "PB 회원가입 승인", path: "/joinAccept" },
   { title: "회원 관리", path: "/users" },
   { title: "상담 현황", path: "/counseling" },
@@ -22,6 +23,13 @@ function FixedLayout({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
   const [isHovered, setIsHovered] = useState(false);
 
+  if (pathName !== "/login") {
+    const accessToken = getCookie("Authorization");
+    if (!accessToken) {
+      redirect("/login");
+    }
+  }
+
   const handleClick = (item: ICategoryItem) => {
     router.push(item.path);
   };
@@ -32,9 +40,11 @@ function FixedLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <main>
-      <header className="fixed left-[240px] top-0 flex h-[50px] w-[calc(100vw-240px)] items-center bg-white">
-        <div className="absolute right-10 h-[30px] w-[30px] cursor-pointer object-contain" onClick={handleClickInfo}>
-          <Image src={admin} alt="user" />
+      <header className="min-width-[1124px] fixed left-[240px] top-0 flex h-[50px] w-[calc(100vw-240px)] items-center bg-white">
+        <div className="flex w-[1124px] items-center justify-end">
+          <button className=" h-[30px] w-[30px] cursor-pointer object-contain" onClick={handleClickInfo}>
+            <Image src={admin} alt="user" />
+          </button>
         </div>
         {isHovered && (
           <div className="absolute right-10 top-16">
