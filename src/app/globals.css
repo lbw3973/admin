@@ -35,4 +35,36 @@
   .popup .cancel-button {
     @apply w-1/2 rounded-md border-1 border-black bg-background-secondary py-3;
   }
+  .form_input {
+    @apply w-full min-w-[358px] rounded-sm border-1 border-background-secondary px-3 py-2 pr-[70px];
+  }
+
+  .form_input:focus-visible {
+    @apply outline-none;
+  }
+
+  .form_input::placeholder {
+    @apply text-placeholder;
+  }
+  .input_button {
+    @apply absolute right-10 h-4 w-4;
+  }
+
+  .entering {
+    @apply !border-primary-normal;
+  }
+
+  .warnning {
+    @apply !border-status-alert;
+  }
+  .input_status {
+    @apply absolute right-3;
+  }
+  .input_authentication {
+    @apply w-full min-w-[302px] max-w-[425px] rounded-sm border-1 border-background-secondary px-3 py-2;
+  }
+
+  .input_authentication:focus-visible {
+    @apply outline-none;
+  }
 }
