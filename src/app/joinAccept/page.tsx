@@ -27,11 +27,11 @@ function JoinAccept() {
 
   return (
     <div className="mx-auto h-full w-[1084px] bg-white shadow-md">
-      <div className="flex h-[572px] w-full border-b-1 border-[#E0E0E0]">
+      <div className="flex h-[587px] w-full border-b-1 border-[#E0E0E0]">
         <table className="h-fit table-fixed border-1">
           <TableHeader />
           {data?.list.map((item, index) => (
-            <TableBody key={item.id} item={item} index={index + 1} />
+            <TableBody key={item.id} item={item} index={index + 1} page={nowPage} />
           ))}
         </table>
         {data?.empty && (
