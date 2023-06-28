@@ -1,6 +1,5 @@
 "use client";
 import { createFaqDetail } from "@/app/apis/faq";
-import { createNoticeDetail } from "@/app/apis/notice";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
@@ -35,12 +34,16 @@ function CreateFaqPage() {
   };
 
   const createHandler = () => {
+    if (createState.title === "" || createState.content === "" || createState.label === "") {
+      alert("작성하지 않은 곳이 있습니다. 다시 확인해주세요.");
+      return;
+    }
     createMutate(createState);
   };
   return (
     <div>
       <div className="w-full ">
-        <div className="justify-betweenbg-[#425C6F] flex h-[52px] items-center p-4 ">
+        <div className="flex h-[52px] items-center justify-between bg-[#425C6F] p-4 ">
           <span className="mr-3 w-[40px] font-bold text-white">제목</span>
           <input className="w-full p-2 py-1 font-bold" onChange={titleChangeHandler} />
           <div className="ml-5 w-[300px] ">
