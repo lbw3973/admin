@@ -10,10 +10,10 @@ export const reissueToken = async () => {
   }
 };
 
-export const getJoinList = async () => {
+export const getJoinList = async (pageParam: number) => {
   try {
-    const res = await instance.get("/admin/pbs");
-    return res;
+    const res = await instance.get("/admin/pbs", { params: { page: pageParam } });
+    return res.data.data;
   } catch (error: any) {
     throw new AxiosError(error);
   }

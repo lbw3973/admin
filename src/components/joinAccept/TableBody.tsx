@@ -6,9 +6,9 @@ import { AccpetJoinPB } from "@/app/apis/joinAccept";
 import ButtonModal from "../common/ButtonModal";
 import Image from "next/image";
 
-const TH_STYLE = "rounded-[1px] h-[52px] border-r-1 border-b-1 border-[#E0E0E0] font-normal py-1 px-2";
+const TH_STYLE = "rounded-[1px] h-[52px] border-r-1 border-[#E0E0E0] font-normal py-1 px-2";
 
-function TableBody({ item, index }: { item: IJoinListData; index: number }) {
+function TableBody({ item, index, page }: { item: IJoinListData; index: number; page: number }) {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
@@ -21,21 +21,17 @@ function TableBody({ item, index }: { item: IJoinListData; index: number }) {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(AccpetJoinPB, {
-    onSuccess: data => {
-      console.log(data);
+    onSuccess: () => {
       setIsModalOpen(false);
       queryClient.invalidateQueries(["joinList"]);
     },
-    onError: err => {
-      console.log(err);
-    },
+    onError: () => {},
   });
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     const buttonEl = e.target as HTMLButtonElement;
     const accept = buttonEl.id === "Accept";
 
-    setIsModalOpen(true);
     setModalContent({
       content: `${buttonEl.innerText} 하시겠습니까?`,
       confirmText: "확인",
@@ -47,13 +43,14 @@ function TableBody({ item, index }: { item: IJoinListData; index: number }) {
         setIsModalOpen(false);
       },
     });
+    setIsModalOpen(true);
   };
 
   return (
     <>
-      <tbody className="border-t-1 border-[#E0E0E0] bg-white text-center">
+      <tbody className="h-[52px] border-t-1 border-[#E0E0E0] text-center">
         <tr>
-          <td className={`${TH_STYLE} w-[52px] border-l-1`}>{index}</td>
+          <td className={`${TH_STYLE} w-[52px] border-l-1`}>{page * 10 + index}</td>
           <td className={`${TH_STYLE} w-[200px]`}>{item.email}</td>
           <td className={`${TH_STYLE} w-[90px]`}>{item.name}</td>
           <td className={`${TH_STYLE} w-[170px]`}>{item.phoneNumber.replace(/(\d{3})(\d{4})(\d)/, "$1-$2-$3")}</td>

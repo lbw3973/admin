@@ -1,17 +1,11 @@
 export interface IJoinList {
-  data: {
-    status: number;
-    msg: string;
-    data: {
-      curPage: number;
-      empty: boolean;
-      first: boolean;
-      last: boolean;
-      list: IJoinListData[];
-      totalElements: number;
-      totalPages: number;
-    };
-  };
+  curPage: number;
+  empty: boolean;
+  first: boolean;
+  last: boolean;
+  list: IJoinListData[];
+  totalElements: number;
+  totalPages: number;
 }
 
 export interface IJoinListData {
