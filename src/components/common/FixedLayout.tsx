@@ -41,16 +41,16 @@ function FixedLayout({ children }: { children: React.ReactNode }) {
   return (
     <main>
       <header className="min-width-[1124px] fixed left-[240px] top-0 flex h-[50px] w-[calc(100vw-240px)] items-center bg-white">
-        <div className="flex w-[1124px] items-center justify-end">
+        <div className="relative flex w-[1124px] items-center justify-end">
           <button className=" h-[30px] w-[30px] cursor-pointer object-contain" onClick={handleClickInfo}>
             <Image src={admin} alt="user" />
           </button>
+          {isHovered && (
+            <div className="absolute top-16">
+              <AdminInfoModal />
+            </div>
+          )}
         </div>
-        {isHovered && (
-          <div className="absolute right-10 top-16">
-            <AdminInfoModal />
-          </div>
-        )}
       </header>
       <nav className="sticky left-0 top-0 h-[100vh] w-60 bg-primary-normal px-5 py-[50px]">
         <Image
