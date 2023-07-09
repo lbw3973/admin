@@ -48,6 +48,9 @@ function TableBody({
 
   const handleSetAdmin = (e: MouseEvent<HTMLElement>) => {
     const buttonEl = e.target as HTMLButtonElement;
+    if (buttonEl.tagName.toLowerCase() !== "button") {
+      return;
+    }
     const accept = buttonEl.id === "Admin";
 
     setModalContent({
