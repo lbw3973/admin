@@ -42,9 +42,11 @@ function Page() {
             <p className="mt-60 text-center">조회하실 증권사를 선택해주세요.</p>
           ) : (
             <>
-              {locationList?.map(item => (
-                <LocationItem key={item.id} location={item} />
-              ))}
+              {locationList?.length ? (
+                locationList?.map(item => <LocationItem key={item.id} location={item} />)
+              ) : (
+                <p className="mt-60 text-center">등록된 지점이 없습니다.</p>
+              )}
             </>
           )}
         </div>
