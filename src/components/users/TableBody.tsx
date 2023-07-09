@@ -115,7 +115,7 @@ function TableBody({
                 </button>
               </>
             ) : (
-              <p className="text-xs">PB에게는 관리자 권한을 부여할 수 없습니다.</p>
+              <p className="text-xs tracking-tight">PB에게는 관리자 권한을 부여할 수 없습니다.</p>
             )}
           </td>
           <td className={`${TH_STYLE} w-[181px]`}>
