@@ -19,7 +19,6 @@ function NoticePage() {
   const onChange = (page: number) => {
     setNowPage(page - 1);
   };
-  console.log(noticeList);
   useEffect(() => {
     if (isSuccess && noticeList) {
       setTotalData(noticeList.totalElements);
@@ -33,7 +32,7 @@ function NoticePage() {
     <div>
       <ListSection noticeList={noticeList.list} nowPage={nowPage} isNotice={true} />
       <Pagination className="py-2 text-center" onChange={onChange} defaultCurrent={1} total={totalData} />
-      <div className="flex justify-end mx-4">
+      <div className="mx-4 flex justify-end">
         <button
           onClick={createHandler}
           className="h-[40px] w-[100px] rounded-sm bg-[#425C6F] font-bold text-white hover:bg-primary-normal"
