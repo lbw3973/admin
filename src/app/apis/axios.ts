@@ -6,7 +6,7 @@ const createInstance = (ContentType: string) => {
   const instance = axios.create({
     // TODO: env
     timeout: 10000,
-    baseURL: process.env.NEXT_PUBLIC_API_KEY,
+    baseURL: "/api",
     headers: {
       "Content-Type": ContentType,
       "Access-Control-Allow-Origin": "*",
