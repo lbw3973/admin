@@ -5,7 +5,7 @@ import { reissueToken } from "./joinAccept";
 const createInstance = (ContentType: string) => {
   const instance = axios.create({
     // TODO: env
-    timeout: 3000,
+    timeout: 10000,
     baseURL: process.env.NEXT_PUBLIC_API_KEY,
     headers: {
       "Content-Type": ContentType,
