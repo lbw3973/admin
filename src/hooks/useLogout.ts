@@ -11,7 +11,7 @@ export const useLogout = () => {
       removeCookie("Authorization");
       removeCookie("refreshToken");
       queryClient.resetQueries();
-      router.replace("https://money-bridge.vercel.app/");
+      router.replace("https://www.moneybridge.co.kr");
     },
   });
 

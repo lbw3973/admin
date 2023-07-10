@@ -20,7 +20,7 @@ function AdminInfoModal() {
       <div className="bg-white px-4 py-5 font-bold">
         <div className="mb-4 flex gap-3">
           <FaHome className="h-6 w-6" />
-          <Link href="https://money-bridge.vercel.app/">머니브릿지로 돌아가기</Link>
+          <Link href="https://www.moneybridge.co.kr">머니브릿지로 돌아가기</Link>
         </div>
         <div className="flex gap-3">
           <FaSignOutAlt className="h-6 w-6" />
