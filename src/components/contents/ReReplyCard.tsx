@@ -18,7 +18,9 @@ function ReReplyCard({ contentQueryKey, rereply }: { contentQueryKey: [string, n
   return (
     <div className="ml-auto mt-[33px] flex w-[90%] flex-col" key={id}>
       <div className="mb-2 flex text-xs">
-        <Image className="mr-2 rounded-full" src={profile || profileImg} alt="프로필" width={18} height={18} />
+        <div className="relative mr-2 h-[18px] w-[18px] overflow-hidden rounded-full">
+          <Image className="object-cover" src={profile || profileImg} alt="프로필" fill />
+        </div>
         <span className="mr-2">{showName(name)} 님</span>
         <span className="flex-1">{dayjs(createdAt).format("YYYY-MM-DD HH:mm:ss")}</span>
         <button onClick={() => mutate(id)} className="rounded-md border-1 border-[#642626] px-2 py-1">
