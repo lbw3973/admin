@@ -1,8 +1,9 @@
 "use client";
 import { CreateNoticeProps, createNoticeDetail } from "@/app/apis/notice";
-import ContentEditor from "@/components/common/ContentEditor";
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 

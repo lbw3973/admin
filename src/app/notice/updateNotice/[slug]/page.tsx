@@ -1,11 +1,11 @@
 "use client";
 import { UpdateNoticeProps, getNoticeDetail, updateNoticeDetail } from "@/app/apis/notice";
-import ContentEditor from "@/components/common/ContentEditor";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useEffect, useState } from "react";
-
+import dynamic from "next/dynamic";
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
 function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
   const [updateState, setUpdateState] = useState({ id: Number(slug), title: "", content: "" });
   const router = useRouter();

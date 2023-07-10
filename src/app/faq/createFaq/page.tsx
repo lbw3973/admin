@@ -1,7 +1,8 @@
 "use client";
 import { createFaqDetail } from "@/app/apis/faq";
-import ContentEditor from "@/components/common/ContentEditor";
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
 import { useMutation } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 

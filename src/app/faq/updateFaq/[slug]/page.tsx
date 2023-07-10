@@ -1,8 +1,9 @@
 "use client";
 import { UpdateFaqProps, getFaqitem, updateFaqDetail } from "@/app/apis/faq";
-import ContentEditor from "@/components/common/ContentEditor";
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useEffect, useState } from "react";
 
