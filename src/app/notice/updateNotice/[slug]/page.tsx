@@ -3,8 +3,9 @@ import { UpdateNoticeProps, getNoticeDetail, updateNoticeDetail } from "@/app/ap
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, useState } from "react";
-
+import React, { ChangeEvent, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
 function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
   const [updateState, setUpdateState] = useState({ id: Number(slug), title: "", content: "" });
   const router = useRouter();
@@ -14,8 +15,7 @@ function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
   );
 
   const { mutate: updateMutate } = useMutation<null, AxiosError, UpdateNoticeProps>(updateNoticeDetail, {
-    onSuccess: data => {
-      console.log(data);
+    onSuccess: () => {
       router.back();
     },
   });
@@ -25,12 +25,7 @@ function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
     setUpdateState(prevState => ({ ...prevState, title: updatedTitle }));
   };
 
-  const contentChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const updatedContent = e.target.value;
-    setUpdateState(prevState => ({ ...prevState, content: updatedContent }));
-  };
-
-  const deleteHandler = () => {
+  const cancelHandler = () => {
     router.back();
   };
 
@@ -38,15 +33,20 @@ function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
     updateMutate(updateState);
   };
 
+  useEffect(() => {
+    if (!detailFaq) return;
+    setUpdateState({ ...detailFaq });
+  }, [detailFaq]);
+
   if (!detailFaq) return;
   return (
     <div>
-      <div className="w-full ">
+      <div className="w-full">
         <div className="flex h-[52px] items-center justify-between bg-[#425C6F] p-4 ">
           <input defaultValue={detailFaq.title} className="w-full p-2 py-1 font-bold" onChange={titleChangeHandler} />
           <div className="ml-5 w-[280px] ">
             <button
-              onClick={deleteHandler}
+              onClick={cancelHandler}
               className="h-[40px] w-[100px] rounded-sm bg-white font-bold text-black hover:bg-background-primary"
             >
               취소
@@ -59,17 +59,8 @@ function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
             </button>
           </div>
         </div>
-        <div className="flex h-[614px] items-center justify-center p-4">
-          <textarea
-            defaultValue={detailFaq.content}
-            onChange={contentChangeHandler}
-            className={"h-full w-full"}
-            name=""
-            id=""
-            cols={30}
-            rows={10}
-          ></textarea>
-        </div>
+
+        <ContentEditor initialState={updateState.content} setContentState={setUpdateState} />
       </div>
     </div>
   );

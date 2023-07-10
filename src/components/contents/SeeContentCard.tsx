@@ -18,8 +18,8 @@ function SeeContentCard({ contentId }: { contentId: number }) {
   console.log(reply);
   return (
     <article>
-      <div className="relative h-[460px]">
-        <Image src={thumbnail} fill alt="PB 프로필" />
+      <div className="relative h-[460px] w-full">
+        <Image src={thumbnail} className="object-contain" fill alt="PB 프로필" />
       </div>
       <div className="mt-6">
         <div className="text-xs font-bold">

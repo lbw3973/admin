@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ReactQueryProvider>
           <FixedLayout>
             <div className="mt-[50px] p-10">
-              <section className="h-full w-[1084px] bg-white shadow-md">{children}</section>
+              <section className="h-full max-h-[660px] w-[1084px] bg-white shadow-md">{children}</section>
             </div>
           </FixedLayout>
         </ReactQueryProvider>
