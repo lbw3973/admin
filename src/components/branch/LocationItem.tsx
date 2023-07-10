@@ -14,15 +14,15 @@ function LocationItem({ location }: { location: ICompanyLocationListData }) {
     mutate(location.id);
   };
   return (
-    <div className="flex h-[52px] w-full border-collapse items-center justify-between border-b-1 border-[#E0E0E0] px-4">
+    <li className="flex h-[52px] w-full border-collapse items-center justify-between border-b-1 border-[#E0E0E0] px-4">
       <div>
-        <p>{location.name}</p>
+        <p className="font-bold">{location.name}</p>
         <p>{location.roadAddress}</p>
       </div>
       <button onClick={handleDelete} className="h-10 rounded-md bg-primary-normal px-2 text-sm text-white">
         지점 삭제
       </button>
-    </div>
+    </li>
   );
 }
 

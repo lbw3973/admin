@@ -16,7 +16,7 @@ function CompanyItem({
   };
 
   return (
-    <div
+    <li
       key={company.id}
       onClick={() => handleClick(company)}
       className="grid h-[52px] cursor-pointer grid-cols-2 items-center gap-2 border-b-1 border-r-1 border-[#E0E0E0] hover:bg-background-primary"
@@ -24,7 +24,7 @@ function CompanyItem({
     >
       <Image src={company.logo} alt="logo" width={25} height={25} className="justify-self-center" />
       <span className="justify-self-start">{company.name}</span>
-    </div>
+    </li>
   );
 }
 
