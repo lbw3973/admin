@@ -31,10 +31,15 @@ function FaqPage() {
   };
   if (!faqList) return;
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <ListSection noticeList={faqList.list} nowPage={nowPage} isNotice={false} />
-      <Pagination className="py-2 mt-auto text-center" onChange={onChange} defaultCurrent={1} total={totalData} />
-      <div className="flex justify-end mx-4">
+      <div className="relative flex w-full justify-end px-4 py-4">
+        <Pagination
+          className="absolute left-1/2 top-1/2 mt-auto -translate-x-1/2 -translate-y-1/2 py-2 text-center"
+          onChange={onChange}
+          defaultCurrent={1}
+          total={totalData}
+        />
         <button
           onClick={createHandler}
           className="h-[40px] w-[100px] rounded-sm bg-[#425C6F] font-bold text-white hover:bg-primary-normal"
