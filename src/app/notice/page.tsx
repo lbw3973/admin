@@ -29,10 +29,15 @@ function NoticePage() {
   };
   if (!noticeList) return;
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <ListSection noticeList={noticeList.list} nowPage={nowPage} isNotice={true} />
-      <Pagination className="py-2 text-center" onChange={onChange} defaultCurrent={1} total={totalData} />
-      <div className="mx-4 flex justify-end">
+      <div className="relative flex w-full justify-end px-4 py-4">
+        <Pagination
+          className="absolute left-1/2 top-1/2 mt-auto -translate-x-1/2 -translate-y-1/2 py-2 text-center"
+          onChange={onChange}
+          defaultCurrent={1}
+          total={totalData}
+        />
         <button
           onClick={createHandler}
           className="h-[40px] w-[100px] rounded-sm bg-[#425C6F] font-bold text-white hover:bg-primary-normal"

@@ -1,5 +1,6 @@
 "use client";
 import { CreateNoticeProps, createNoticeDetail } from "@/app/apis/notice";
+import ContentEditor from "@/components/common/ContentEditor";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -18,11 +19,6 @@ function CreateNoticePage() {
   const titleChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const createdTitle = e.target.value;
     setCreateState(prevState => ({ ...prevState, title: createdTitle }));
-  };
-
-  const contentChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const createdContent = e.target.value;
-    setCreateState(prevState => ({ ...prevState, content: createdContent }));
   };
 
   const deleteHandler = () => {
@@ -56,16 +52,7 @@ function CreateNoticePage() {
             </button>
           </div>
         </div>
-        <div className="flex h-[614px] items-center justify-center p-4">
-          <textarea
-            onChange={contentChangeHandler}
-            className={"h-full w-full border-1"}
-            name=""
-            id=""
-            cols={30}
-            rows={10}
-          ></textarea>
-        </div>
+        <ContentEditor initialState={createState.content} setContentState={setCreateState} />
       </div>
     </div>
   );
