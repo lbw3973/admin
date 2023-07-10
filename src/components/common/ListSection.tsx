@@ -28,7 +28,7 @@ function ListSection({ noticeList, nowPage, isNotice }: NoticeListProps) {
   };
 
   return (
-    <>
+    <div className="h-full">
       <table className="h-fit w-full table-fixed">
         <thead className="h-[52px] bg-[#425C6F] text-white">
           <tr>
@@ -52,7 +52,7 @@ function ListSection({ noticeList, nowPage, isNotice }: NoticeListProps) {
             ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 
