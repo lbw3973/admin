@@ -29,9 +29,7 @@ function SeeContentCard({ contentId }: { contentId: number }) {
         </div>
         <p className="mb-3 text-2xl font-bold">{title}</p>
         <p className="font-xs flex-1">{dayjs(createdAt).format("YYYY. MM. DD")}</p>
-        <div className="mb-[103px] text-sm">
-          <p className="break-keep">{content}</p>
-        </div>
+        <div className="mb-[103px] text-sm" dangerouslySetInnerHTML={{ __html: content }} />
       </div>
       <div className="flex">
         <div className="mb-[16px] flex-1 text-base font-bold">댓글 {reply.length}개</div>
