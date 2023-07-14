@@ -6,7 +6,6 @@ import { Doughnut } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function DoughnutChart({ dashBoardData }: { dashBoardData: IDashBoardData }) {
-  console.log(dashBoardData);
   const { apply, confirm, complete, review } = dashBoardData;
   const data = {
     labels: ["신규예약", "예약확정", "상담완료", "후기작성"],
