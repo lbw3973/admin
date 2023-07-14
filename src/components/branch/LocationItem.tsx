@@ -20,6 +20,7 @@ function LocationItem({ location, companyId }: { location: ICompanyLocationListD
   const { mutate: mutateEdit } = useMutation(editLocation, {
     onSuccess: () => {
       queryClient.refetchQueries(["companyLocation"]);
+      setEditMode(false);
     },
   });
 
@@ -82,7 +83,7 @@ function LocationItem({ location, companyId }: { location: ICompanyLocationListD
           </div>
         ) : (
           <>
-            <p>{location.name}</p>
+            <p className="font-bold">{location.name}</p>
             <p>{getLoadAddress(location.roadAddress)}</p>
             <p>{getSpecificAddress(location.roadAddress)}</p>
           </>
