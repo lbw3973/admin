@@ -20,3 +20,8 @@ export const deleteLocation = async (id: number) => {
   const res = await instance.delete(`/admin/branch/${id}`);
   return res.data;
 };
+
+export const editLocation = async ({ id, data }: { id: number; data: IReqBranch }) => {
+  const res = await instance.patch(`/admin/branch/${id}`, data);
+  return res.data;
+};

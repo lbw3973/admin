@@ -18,6 +18,8 @@ function Page() {
     () => getCompanyLocation(company.id, keyword),
   );
 
+  console.log(locationList);
+
   return (
     <div className="flex h-full w-full">
       <div className=" w-[300px] table-fixed">
