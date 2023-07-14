@@ -26,7 +26,7 @@ function Page() {
             증권사 리스트
           </div>
         </div>
-        <ul className="max-h-[648px] overflow-y-scroll text-center">
+        <ul className="max-h-[608px] overflow-y-scroll text-center">
           {companyList &&
             companyList.map(item => (
               <CompanyItem key={item.id} company={item} setCompanyId={setCompanyId} setKeyword={setKeyword} />
