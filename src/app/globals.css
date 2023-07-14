@@ -29,7 +29,7 @@
   }
 
   .popup .popup-button {
-    @apply rounded-md bg-primary-normal text-white;
+    @apply rounded-md bg-primary-normal py-2 text-white;
   }
 
   .popup .cancel-button {

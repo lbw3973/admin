@@ -8,7 +8,7 @@ import React from "react";
 function DetailNoticePage({ params: { slug } }: { params: { slug: string } }) {
   const router = useRouter();
 
-  const { data: detailFaq } = useQuery<UpdateNoticeProps, AxiosError>(["noticeItem"], () =>
+  const { data: detailNotice } = useQuery<UpdateNoticeProps, AxiosError>(["noticeItem"], () =>
     getNoticeDetail(Number(slug)),
   );
 
@@ -25,12 +25,12 @@ function DetailNoticePage({ params: { slug } }: { params: { slug: string } }) {
     router.push(`/notice/updateNotice/${slug}`);
   };
 
-  if (!detailFaq) return;
+  if (!detailNotice) return;
   return (
     <div>
       <div className="w-full ">
         <div className="flex h-[52px] items-center justify-between bg-[#425C6F] p-4 text-white">
-          <h3 className="font-bold ">{detailFaq.title}</h3>
+          <h3 className="font-bold ">{detailNotice.title}</h3>
           <div className="justify-self-end">
             <button
               onClick={updateHandler}
@@ -46,9 +46,10 @@ function DetailNoticePage({ params: { slug } }: { params: { slug: string } }) {
             </button>
           </div>
         </div>
-        <div className="flex h-[614px] items-center justify-center p-4">
-          <p className={"h-full"}>{detailFaq.content}</p>
-        </div>
+        <div
+          className="flex h-[614px] items-center justify-center p-4"
+          dangerouslySetInnerHTML={{ __html: detailNotice.content }}
+        />
       </div>
     </div>
   );

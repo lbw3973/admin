@@ -1,6 +1,8 @@
 "use client";
 import { createFaqDetail } from "@/app/apis/faq";
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
 import { useMutation } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 
@@ -65,16 +67,7 @@ function CreateFaqPage() {
           <span className="mr-[3px] w-[40px] font-bold text-white">유형</span>
           <input className="w-full p-2 py-1 font-bold" onChange={labelChangeHandler} />
         </div>
-        <div className="flex h-[614px] items-center justify-center p-4">
-          <textarea
-            onChange={contentChangeHandler}
-            className={"h-full w-full rounded-sm border-1 p-4"}
-            name=""
-            id=""
-            cols={30}
-            rows={10}
-          ></textarea>
-        </div>
+        <ContentEditor initialState={createState.content} setContentState={setCreateState} />
       </div>
     </div>
   );

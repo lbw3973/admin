@@ -48,6 +48,9 @@ function TableBody({
 
   const handleSetAdmin = (e: MouseEvent<HTMLElement>) => {
     const buttonEl = e.target as HTMLButtonElement;
+    if (buttonEl.tagName.toLowerCase() !== "button") {
+      return;
+    }
     const accept = buttonEl.id === "Admin";
 
     setModalContent({
@@ -112,7 +115,7 @@ function TableBody({
                 </button>
               </>
             ) : (
-              <p className="text-xs">PB에게는 관리자 권한을 부여할 수 없습니다.</p>
+              <p className="text-xs tracking-tight">PB에게는 관리자 권한을 부여할 수 없습니다.</p>
             )}
           </td>
           <td className={`${TH_STYLE} w-[181px]`}>

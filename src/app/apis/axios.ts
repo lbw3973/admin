@@ -5,8 +5,8 @@ import { reissueToken } from "./joinAccept";
 const createInstance = (ContentType: string) => {
   const instance = axios.create({
     // TODO: env
-    timeout: 3000,
-    baseURL: process.env.NEXT_PUBLIC_API_KEY,
+    timeout: 10000,
+    baseURL: "/api",
     headers: {
       "Content-Type": ContentType,
       "Access-Control-Allow-Origin": "*",
@@ -19,6 +19,7 @@ const createInstance = (ContentType: string) => {
     request => {
       const token = getCookie("Authorization");
       if (token) request.headers["Authorization"] = `${token}`;
+      if (!token) request.headers["Authorization"] = "";
       return request;
     },
     (error: AxiosError) => {

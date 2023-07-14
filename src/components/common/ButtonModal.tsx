@@ -29,7 +29,7 @@ function ButtonModal({ modalContents, isOpen, setIsOpen, children }: ButtonModal
       <div className="modal_background" />
       <div className="popup flex flex-col justify-between">
         <div className="text-center">
-          <h3 className={`text-lg mb-2 break-keep text-center ${children ? "pt-14" : "pt-20"}`}>{content}</h3>
+          <h3 className={`mb-2 break-keep text-center text-xl font-bold ${children ? "pt-14" : "pt-20"}`}>{content}</h3>
           {children}
         </div>
         <div className="flex w-full gap-4">

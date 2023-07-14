@@ -14,6 +14,7 @@ const category = [
   { title: "회원 관리", path: "/users" },
   { title: "상담 현황", path: "/counseling" },
   { title: "게시글 관리", path: "/contents" },
+  { title: "지점 관리", path: "/branch" },
   { title: "공지사항 관리", path: "/notice" },
   { title: "FAQ 관리", path: "/faq" },
 ];

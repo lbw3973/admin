@@ -28,8 +28,8 @@ function ListSection({ noticeList, nowPage, isNotice }: NoticeListProps) {
   };
 
   return (
-    <>
-      <table className="w-full table-fixed h-fit">
+    <div className="h-full">
+      <table className="h-fit w-full table-fixed">
         <thead className="h-[52px] bg-[#425C6F] text-white">
           <tr>
             <th className={`${TH_STYLE} w-[36px]`}>No</th>
@@ -52,7 +52,7 @@ function ListSection({ noticeList, nowPage, isNotice }: NoticeListProps) {
             ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 
