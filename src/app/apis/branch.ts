@@ -13,6 +13,7 @@ export const getCompanyList = async () => {
 
 export const getCompanyLocation = async (id: number, keyword: string) => {
   const res = await instance.get(`/branch?companyId=${id}&keyword=${keyword}`);
+  console.log(res.data);
   return res.data.data.list;
 };
 

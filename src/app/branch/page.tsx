@@ -18,8 +18,6 @@ function Page() {
     () => getCompanyLocation(company.id, keyword),
   );
 
-  console.log(locationList);
-
   return (
     <div className="flex h-full w-full">
       <div className=" w-[300px] table-fixed">
@@ -43,7 +41,7 @@ function Page() {
           ) : (
             <ul>
               {locationList?.length ? (
-                locationList?.map(item => <LocationItem key={item.id} location={item} />)
+                locationList?.map(item => <LocationItem key={item.id} location={item} companyId={company.id} />)
               ) : (
                 <li>
                   <p className="mt-60 text-center">등록된 지점이 없습니다.</p>

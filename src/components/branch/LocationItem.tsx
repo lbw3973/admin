@@ -3,7 +3,7 @@ import { ICompanyLocationListData } from "@/types/branch";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useRef, useState } from "react";
 
-function LocationItem({ location }: { location: ICompanyLocationListData }) {
+function LocationItem({ location, companyId }: { location: ICompanyLocationListData; companyId: number }) {
   const [editMode, setEditMode] = useState(false);
   const inputName = useRef<HTMLInputElement>(null);
   const inputAddress = useRef<HTMLInputElement>(null);
@@ -13,6 +13,7 @@ function LocationItem({ location }: { location: ICompanyLocationListData }) {
   const { mutate: mutateDelete } = useMutation(deleteLocation, {
     onSuccess: () => {
       queryClient.refetchQueries(["companyLocation"]);
+      setEditMode(false);
     },
   });
 
@@ -21,6 +22,13 @@ function LocationItem({ location }: { location: ICompanyLocationListData }) {
       queryClient.refetchQueries(["companyLocation"]);
     },
   });
+
+  const getLoadAddress = (address: string) => {
+    return address.includes(",") ? address.split(",")[0] : address;
+  };
+  const getSpecificAddress = (address: string) => {
+    return address.includes(",") ? address.split(",")[1] : "";
+  };
 
   const handleDelete = () => {
     mutateDelete(location.id);
@@ -31,7 +39,7 @@ function LocationItem({ location }: { location: ICompanyLocationListData }) {
       mutateEdit({
         id: location.id,
         data: {
-          companyId: location.id,
+          companyId: companyId,
           name: inputName.current?.value,
           address: inputAddress.current?.value,
           specificAddress: inputSpecific.current?.value,
@@ -43,11 +51,7 @@ function LocationItem({ location }: { location: ICompanyLocationListData }) {
   };
 
   return (
-    <li
-      className={`flex ${
-        editMode ? "h-[100px]" : "h-[52px]"
-      } w-full border-collapse items-center justify-between border-b-1 border-[#E0E0E0] px-4`}
-    >
+    <li className="flex h-[100px] w-full border-collapse items-center justify-between border-b-1 border-[#E0E0E0] px-4">
       <div>
         {editMode ? (
           <div className="flex flex-col gap-1">
@@ -63,7 +67,7 @@ function LocationItem({ location }: { location: ICompanyLocationListData }) {
               <h4>지점 주소</h4>
               <input
                 ref={inputAddress}
-                defaultValue={location.roadAddress}
+                defaultValue={getLoadAddress(location.roadAddress).trim()}
                 className="ml-2 w-[500px] rounded-sm border-1 border-black px-2"
               />
             </label>
@@ -71,7 +75,7 @@ function LocationItem({ location }: { location: ICompanyLocationListData }) {
               <h4>상세 주소</h4>
               <input
                 ref={inputSpecific}
-                defaultValue={location.roadAddress}
+                defaultValue={getSpecificAddress(location.roadAddress).trim()}
                 className="ml-2 w-[500px] rounded-sm border-1 border-black px-2"
               />
             </label>
@@ -79,19 +83,20 @@ function LocationItem({ location }: { location: ICompanyLocationListData }) {
         ) : (
           <>
             <p>{location.name}</p>
-            <p>{location.roadAddress}</p>
+            <p>{getLoadAddress(location.roadAddress)}</p>
+            <p>{getSpecificAddress(location.roadAddress)}</p>
           </>
         )}
       </div>
-      <div className="flex gap-2">
+      <div className="flex w-[150px] gap-2">
         {editMode ? (
           <>
-            <button onClick={handleEdit} className="h-10 rounded-md bg-primary-light px-2 text-sm text-white">
+            <button onClick={handleEdit} className="h-10 w-full rounded-md bg-primary-light px-2 text-sm text-white">
               수정
             </button>
             <button
               onClick={() => setEditMode(false)}
-              className="h-10 rounded-md bg-status-alert px-2 text-sm text-white"
+              className="h-10 w-full rounded-md bg-status-alert px-2 text-sm text-white"
             >
               취소
             </button>
@@ -100,11 +105,11 @@ function LocationItem({ location }: { location: ICompanyLocationListData }) {
           <>
             <button
               onClick={() => setEditMode(true)}
-              className="h-10 rounded-md bg-secondary-light px-2 text-sm text-white"
+              className="h-10 w-full rounded-md bg-secondary-light px-1 text-sm text-white"
             >
               지점 수정
             </button>
-            <button onClick={handleDelete} className="h-10 rounded-md bg-primary-normal px-2 text-sm text-white">
+            <button onClick={handleDelete} className="h-10 w-full rounded-md bg-primary-normal px-1 text-sm text-white">
               지점 삭제
             </button>
           </>

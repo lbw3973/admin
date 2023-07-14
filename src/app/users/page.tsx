@@ -3,7 +3,7 @@ import TableHeader from "@/components/users/TableHeader";
 import { USER_TYPE } from "@/constants/enum";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import React, { useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { Pagination } from "antd";
 import { getUserList } from "../apis/users";
 import TableBody from "@/components/users/TableBody";
@@ -16,6 +16,12 @@ function Users() {
   const { data, isSuccess } = useQuery<unknown, AxiosError, IUserInfo>([userType, nowPage], () => {
     return getUserList({ type: userType, page: nowPage });
   });
+
+  const handleTypeChange = (e: MouseEvent<HTMLButtonElement>) => {
+    const button = e.target as HTMLButtonElement;
+    setUserType(button.id as USER_TYPE);
+    setNowPage(0);
+  };
 
   const onChange = (page: number) => {
     setNowPage(page - 1);
@@ -31,7 +37,8 @@ function Users() {
     <>
       <div className={`my-2.5 ml-2.5 flex h-10 w-[1084px] gap-4 text-sm font-bold `}>
         <button
-          onClick={() => setUserType(USER_TYPE.PB)}
+          id={`${USER_TYPE.PB}`}
+          onClick={handleTypeChange}
           className={`w-24 rounded-[8px] shadow-md ${
             userType === USER_TYPE.PB ? "bg-[#334E54] text-white" : "bg-white"
           }`}
@@ -39,7 +46,8 @@ function Users() {
           PB
         </button>
         <button
-          onClick={() => setUserType(USER_TYPE.USER)}
+          id={`${USER_TYPE.USER}`}
+          onClick={handleTypeChange}
           className={`w-24 rounded-[8px] shadow-md ${
             userType === USER_TYPE.USER ? "bg-[#334E54] text-white" : "bg-white"
           }`}
@@ -56,7 +64,7 @@ function Users() {
             ))}
           </table>
         </div>
-        <Pagination className="py-2 text-center" onChange={onChange} total={totalData} defaultCurrent={1} />
+        <Pagination className="py-2 text-center" onChange={onChange} total={totalData} defaultCurrent={nowPage} />
       </div>
     </>
   );
