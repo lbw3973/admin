@@ -15,7 +15,10 @@ function SeeMoreCards({ seeMore }: { seeMore: IReservationList }) {
 
   return (
     <article className="w-full px-12 py-6">
-      <button className={`${BUTTON_STYLE} ${reservBackground}`}>{reservStatus}</button>
+      <div className="flex items-center justify-between">
+        <p className={`${BUTTON_STYLE} ${reservBackground}`}>{reservStatus}</p>
+        <p>신청일 : {pb.createdAt}</p>
+      </div>
       <div className={CARD_STYLE}>
         <h4 className={`bg-[#425C6F] ${H4_STYLE}`}>상담 정보</h4>
         <ul className="w-full px-4 py-1">

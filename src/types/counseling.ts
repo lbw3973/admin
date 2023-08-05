@@ -14,7 +14,7 @@ export interface IReservationList {
   goal: "PROFIT" | "RISK" | "TAX" | "PRESERVATION";
   id: number;
   locationName: string;
-  pb: { id: number; email: string; name: string; phoneNumber: string };
+  pb: { id: number; email: string; name: string; phoneNumber: string; createdAt: string };
   user: { id: number; email: string; name: string; phoneNumber: string };
   process: "APPLY" | "CONFIRM" | "COMPLETE";
   question: string | null;
@@ -22,6 +22,7 @@ export interface IReservationList {
   status: string;
   time: string;
   type: "VISIT" | "CALL";
+  createdAt: string;
 }
 
 export type TReserveStatus = "예약신청" | "예약확정" | "상담완료" | "예약취소";

@@ -11,3 +11,12 @@ export const getReservations = async (pageParam: number) => {
     throw new AxiosError(error.response.data);
   }
 };
+
+export const deleteReservation = async (id: number) => {
+  try {
+    const res = await instance.delete(`/admin/reservation/${id}`);
+    return res.data.data;
+  } catch (error: any) {
+    throw new AxiosError(error.response.data);
+  }
+};
