@@ -15,7 +15,6 @@ function SeeContentCard({ contentId }: { contentId: number }) {
   if (!data || !isSuccess) return null;
 
   const { tag1, tag2, thumbnail, title, createdAt, content, reply } = data;
-  console.log(reply);
   return (
     <article>
       <div className="relative h-[460px] w-full">

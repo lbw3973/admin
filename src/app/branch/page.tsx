@@ -41,7 +41,7 @@ function Page() {
           ) : (
             <ul>
               {locationList?.length ? (
-                locationList?.map(item => <LocationItem key={item.id} location={item} />)
+                locationList?.map(item => <LocationItem key={item.id} location={item} companyId={company.id} />)
               ) : (
                 <li>
                   <p className="mt-60 text-center">등록된 지점이 없습니다.</p>

@@ -6,7 +6,7 @@ const createInstance = (ContentType: string) => {
   const instance = axios.create({
     // TODO: env
     timeout: 10000,
-    baseURL: "/api",
+    baseURL: "https://api.moneybridge.co.kr",
     headers: {
       "Content-Type": ContentType,
       "Access-Control-Allow-Origin": "*",
@@ -23,7 +23,6 @@ const createInstance = (ContentType: string) => {
       return request;
     },
     (error: AxiosError) => {
-      console.log(error);
       return Promise.reject(error);
     },
   );
