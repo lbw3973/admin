@@ -14,7 +14,7 @@ export interface IReservationList {
   goal: "PROFIT" | "RISK" | "TAX" | "PRESERVATION";
   id: number;
   locationName: string;
-  pb: { id: number; email: string; name: string; phoneNumber: string; createdAt: string };
+  pb: { id: number; email: string; name: string; phoneNumber: string };
   user: { id: number; email: string; name: string; phoneNumber: string };
   process: "APPLY" | "CONFIRM" | "COMPLETE";
   question: string | null;
