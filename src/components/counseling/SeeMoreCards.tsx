@@ -7,7 +7,7 @@ const H4_STYLE = "px-4 text-xs font-bold leading-8 text-white";
 const CARD_STYLE = "mb-4 overflow-hidden rounded-md shadow-md";
 const LI_STYLE = "flex w-full justify-between py-1 text-xs";
 function SeeMoreCards({ seeMore }: { seeMore: IReservationList }) {
-  const { user, pb, time, type, locationName, goal, status, process } = seeMore;
+  const { user, pb, time, type, locationName, goal, status, process, createdAt } = seeMore;
   const reservTime = reservationType[type];
   const reservGoal = reservationGoal[goal];
   const reservStatus = status === "CANCEL" ? "예약취소" : (reservationProcess[process] as TReserveStatus);
@@ -15,7 +15,10 @@ function SeeMoreCards({ seeMore }: { seeMore: IReservationList }) {
 
   return (
     <article className="w-full px-12 py-6">
-      <button className={`${BUTTON_STYLE} ${reservBackground}`}>{reservStatus}</button>
+      <div className="flex items-center justify-between">
+        <p className={`${BUTTON_STYLE} ${reservBackground}`}>{reservStatus}</p>
+        <p>신청일 : {createdAt}</p>
+      </div>
       <div className={CARD_STYLE}>
         <h4 className={`bg-[#425C6F] ${H4_STYLE}`}>상담 정보</h4>
         <ul className="w-full px-4 py-1">

@@ -22,6 +22,7 @@ export interface IReservationList {
   status: string;
   time: string;
   type: "VISIT" | "CALL";
+  createdAt: string;
 }
 
 export type TReserveStatus = "예약신청" | "예약확정" | "상담완료" | "예약취소";

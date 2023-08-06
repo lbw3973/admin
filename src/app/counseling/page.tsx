@@ -1,10 +1,10 @@
 "use client";
 import CounselingList from "@/components/counseling/CounselingList";
 import SeeMore from "@/components/counseling/SeeMore";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Pagination } from "antd";
 import React, { useEffect, useState } from "react";
-import { getReservations } from "../apis/reservations";
+import { deleteReservation, getReservations } from "../apis/reservations";
 import { IReservationList, IReservationListData } from "@/types/counseling";
 import { AxiosError } from "axios";
 
@@ -13,14 +13,25 @@ function Counseling() {
   const [seeMore, setSeeMore] = useState<IReservationList | null>(null);
   const [totalData, setTotalData] = useState(0);
   const [nowPage, setNowPage] = useState(0);
-  const { data, isSuccess } = useQuery<IReservationListData, AxiosError>(["reservationList", nowPage], () => {
+  const { data, isSuccess, refetch } = useQuery<IReservationListData, AxiosError>(["reservationList", nowPage], () => {
     return getReservations(nowPage);
+  });
+  const { mutate: deleteItem, isLoading } = useMutation(deleteReservation, {
+    onSuccess: () => {
+      refetch();
+      setSeeMore(null);
+    },
   });
 
   const onChange = (page: number) => {
     setNowPage(page - 1);
   };
 
+  const handleDelete = () => {
+    if (!seeMore) return;
+    const nowId = seeMore.id;
+    deleteItem(nowId);
+  };
   useEffect(() => {
     if (isSuccess && data) {
       setTotalData(data.totalElements);
@@ -46,9 +57,20 @@ function Counseling() {
         <div className="w-1/2 justify-self-end border-l-1 border-[#E0E0E0]">
           <div className="flex h-[52px] items-center justify-between bg-[#425C6F] px-4">
             <h3 className=" text-white">자세히 보기</h3>
-            <button onClick={() => setSeeMore(null)} className="rounded-md bg-background-primary px-4 py-1 text-sm">
-              닫기
-            </button>
+            {seeMore && (
+              <div className="flex gap-2">
+                <button
+                  onClick={handleDelete}
+                  disabled={isLoading}
+                  className="rounded-md bg-status-caution px-4 py-1 text-sm"
+                >
+                  삭제
+                </button>
+                <button onClick={() => setSeeMore(null)} className="rounded-md bg-background-primary px-4 py-1 text-sm">
+                  닫기
+                </button>
+              </div>
+            )}
           </div>
           <SeeMore seeMore={seeMore} />
         </div>
