@@ -75,7 +75,8 @@ function TableBody({ item, index, page }: { item: IJoinListData; index: number; 
       </tbody>
       {isCardOpen && (
         <ModalLayout handleCloseModal={() => setIsCardOpen(false)}>
-          <Image src={item.businessCard} alt="businessCard" width={800} height={800} />
+          <p className="mb-4 font-bold">{item.name} 의 명함</p>
+          <Image className="max-h-[400px]" src={item.businessCard} alt="businessCard" width={500} height={400} />
         </ModalLayout>
       )}
       {isModalOpen && <ButtonModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} modalContents={modalContent} />}

@@ -32,6 +32,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
+        <meta property="og:image" content="<generated>" />
+        <meta property="og:image:type" content="<generated>" />
+        <meta property="og:image:width" content="<generated>" />
+        <meta property="og:image:height" content="<generated>" />
       </head>
       <body className={noto.className}>
         <ReactQueryProvider>
