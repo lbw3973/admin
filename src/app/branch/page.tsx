@@ -23,6 +23,7 @@ function Page() {
   const { mutate: removeCompany } = useMutation(["deleteCompany"], deleteCompany, {
     onSuccess: () => {
       queryClient.refetchQueries(["companyList"]);
+      setCompanyId({ id: 0, name: "", logo: "" });
     },
   });
 

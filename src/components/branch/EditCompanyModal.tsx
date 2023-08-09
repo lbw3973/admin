@@ -16,9 +16,10 @@ function EditCompanyModal({ handleCloseModal, company }: Props) {
   const queryClient = useQueryClient();
   const { id, name, logo } = company;
   const [nowLogo, setNowLogo] = useState<string>(logo);
-  const { register, setValue, handleSubmit } = useForm({
+  const { register, setValue, handleSubmit, watch } = useForm({
     defaultValues: { companyName: name, logo } as { companyName: string; logo: File | string },
   });
+  const isDisabled = watch("companyName") === name && watch("logo") === logo;
   const { mutate } = useMutation(updateCompany, {
     onSuccess: () => {
       queryClient.refetchQueries(["companyList"]);
@@ -82,7 +83,14 @@ function EditCompanyModal({ handleCloseModal, company }: Props) {
           </div>
         </div>
       </div>
-      <button className="w-full rounded-md bg-primary-normal py-4 font-bold text-white">수정하기</button>
+      <button
+        disabled={isDisabled}
+        className={`w-full rounded-md ${
+          isDisabled ? "bg-button-inactive" : "bg-primary-normal  text-white"
+        } py-4 font-bold`}
+      >
+        수정하기
+      </button>
     </form>
   );
 }
