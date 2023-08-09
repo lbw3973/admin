@@ -17,3 +17,8 @@ export interface ICompanyLocationListData {
   roadAddress: string;
   streetAddress: string;
 }
+
+export interface ICompanyForm {
+  name: string;
+  logo: FileList;
+}

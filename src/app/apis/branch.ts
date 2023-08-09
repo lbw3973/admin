@@ -1,5 +1,5 @@
 import { IReqBranch } from "@/types/branch";
-import { instance } from "./axios";
+import { formInstance, instance } from "./axios";
 
 export const registerBranch = async (data: IReqBranch) => {
   const res = await instance.post("/admin/branch", data);
@@ -23,5 +23,20 @@ export const deleteLocation = async (id: number) => {
 
 export const editLocation = async ({ id, data }: { id: number; data: IReqBranch }) => {
   const res = await instance.patch(`/admin/branch/${id}`, data);
+  return res.data;
+};
+
+export const deleteCompany = async (id: number) => {
+  const res = await instance.delete(`/admin/company/${id}`);
+  return res.data;
+};
+
+export const addCompany = async (formData: FormData) => {
+  const res = await formInstance.post("/admin/company", formData);
+  return res.data;
+};
+
+export const updateCompany = async ({ id, formData }: { id: number; formData: FormData }) => {
+  const res = await formInstance.patch(`/admin/company/${id}`, formData);
   return res.data;
 };
