@@ -12,7 +12,7 @@ export const reissueToken = async () => {
 
 export const getJoinList = async (pageParam: number) => {
   try {
-    const res = await instance.get("/admin/pbs", { params: { page: pageParam } });
+    const res = await instance.get("/admin/pendings", { params: { page: pageParam } });
     return res.data.data;
   } catch (error: any) {
     throw new AxiosError(error);
