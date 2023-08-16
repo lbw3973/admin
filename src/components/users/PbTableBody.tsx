@@ -5,10 +5,11 @@ import ButtonModal from "../common/ButtonModal";
 import { IUserInfoData } from "@/types/users";
 import { USER_TYPE } from "@/constants/enum";
 import { setAdminPermission as setPermission, withdrawUser } from "@/app/apis/users";
+import Image from "next/image";
 
 const TH_STYLE = "rounded-[1px] h-[52px] border-r-1 border-[#E0E0E0] font-normal py-1 px-2";
 
-function TableBody({
+function PbTableBody({
   item,
   index,
   userType,
@@ -20,6 +21,7 @@ function TableBody({
   page: number;
 }) {
   const [isCardOpen, setIsCardOpen] = useState(false);
+  const [isBCardOpen, setIsBCardOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
     content: "",
@@ -87,47 +89,42 @@ function TableBody({
       <tbody className="h-[52px] border-t-1 border-[#E0E0E0] text-center">
         <tr>
           <td className={`${TH_STYLE} w-[52px] border-l-1`}>{page * 10 + index}</td>
+          <td className={`${TH_STYLE} w-[132px] border-l-1`}>{item.createdAt}</td>
           <td className={`${TH_STYLE} w-[210px]`}>{item.email}</td>
           <td className={`${TH_STYLE} w-[120px]`}>{item.name}</td>
           <td className={`${TH_STYLE} w-[200px]`}>{item.phoneNumber.replace(/(\d{3})(\d{4})(\d)/, "$1-$2-$3")}</td>
           <td className={`${TH_STYLE} w-[88px]`}>{userType === USER_TYPE.PB ? "PB" : "투자자"}</td>
           <td
-            className={`${TH_STYLE} flex w-[240px] items-center justify-center gap-5 px-2 text-sm`}
+            className={`${TH_STYLE} flex w-[200px] items-center justify-center gap-5 px-2 text-sm`}
             onClick={handleSetAdmin}
           >
-            {userType === USER_TYPE.USER ? (
-              <>
-                <button
-                  id="User"
-                  className={`h-7 w-[72px] rounded-[8px] ${
-                    item.isAdmin ? "border-1 border-[#335C64] bg-white text-[#355C64]" : "bg-[#335C64] text-white"
-                  }`}
-                >
-                  유저
-                </button>
-                <button
-                  id="Admin"
-                  className={`h-7 w-[72px] rounded-[8px] ${
-                    !item.isAdmin ? "border-1 border-[#335C64] bg-white text-[#355C64]" : "bg-[#335C64] text-white"
-                  }`}
-                >
-                  관리자
-                </button>
-              </>
-            ) : (
-              <p className="text-xs tracking-tight">PB에게는 관리자 권한을 부여할 수 없습니다.</p>
-            )}
+            {item.branchName}
           </td>
-          <td className={`${TH_STYLE} w-[181px]`}>
+          <td className={`${TH_STYLE} w-[60px]`}>
+            <button
+              onClick={() => setIsBCardOpen(true)}
+              className="h-full w-20 rounded-[8px] bg-[#2A4457] text-sm text-white"
+            >
+              명함 확인
+            </button>
+          </td>
+          <td className={`${TH_STYLE} w-[60px]`}>
             <button
               onClick={handleWithdraw}
-              className="h-7 w-40 rounded-[8px] border-1 border-[#355C64] text-sm font-bold text-[#355C64] hover:bg-[#355C64] hover:text-white"
+              className="h-7 w-20 rounded-[8px] border-1 border-[#355C64] text-sm font-bold text-[#355C64] hover:bg-[#355C64] hover:text-white"
             >
               탈퇴처리
             </button>
           </td>
         </tr>
       </tbody>
+
+      {isBCardOpen && (
+        <ModalLayout handleCloseModal={() => setIsBCardOpen(false)}>
+          <p className="mb-4 font-bold">{item.name} 의 명함</p>
+          <Image className="max-h-[400px]" src={item.businessCard} alt="businessCard" width={500} height={400} />
+        </ModalLayout>
+      )}
       {isCardOpen && (
         <ModalLayout handleCloseModal={() => setIsCardOpen(false)}>
           {/* <Image src={item.businessCard} alt="businessCard" width={800} height={800} /> */}
@@ -138,4 +135,4 @@ function TableBody({
   );
 }
 
-export default TableBody;
+export default PbTableBody;

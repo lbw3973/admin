@@ -14,4 +14,7 @@ export interface IUserInfoData {
   isAdmin: boolean;
   name: string;
   phoneNumber: string;
+  createdAt: string;
+  businessCard: string;
+  branchName: string;
 }
