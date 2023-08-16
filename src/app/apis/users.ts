@@ -1,7 +1,23 @@
 import { instance } from "./axios";
 
-export const getUserList = async ({ type, page }: { type: string; page: number }) => {
-  const res = await instance.get(`/admin/members?type=${type.toLowerCase()}&page=${page}`);
+export const getUserList = async ({
+  type,
+  page,
+  keyword,
+  searchType,
+}: {
+  type: string;
+  page: number;
+  keyword: string;
+  searchType: string;
+}) => {
+  const res = await instance.get(`/admin/${type.toLowerCase()}s`, {
+    params: {
+      page,
+      keyword,
+      type: searchType,
+    },
+  });
   return res.data.data;
 };
 
