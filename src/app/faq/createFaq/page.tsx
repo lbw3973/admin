@@ -1,6 +1,8 @@
 "use client";
 import { createFaqDetail } from "@/app/apis/faq";
-const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"), {
+  ssr: false,
+});
 import { useMutation } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
@@ -42,6 +44,10 @@ function CreateFaqPage() {
     }
     createMutate(createState);
   };
+
+  const updateContent = (data: string) => {
+    setCreateState({ ...createState, content: data });
+  };
   return (
     <div>
       <div className="w-full ">
@@ -67,7 +73,7 @@ function CreateFaqPage() {
           <span className="mr-[3px] w-[40px] font-bold text-white">유형</span>
           <input className="w-full p-2 py-1 font-bold" onChange={labelChangeHandler} />
         </div>
-        <ContentEditor initialState={createState.content} setContentState={setCreateState} />
+        <ContentEditor initialState={createState.content} updateContent={updateContent} />
       </div>
     </div>
   );

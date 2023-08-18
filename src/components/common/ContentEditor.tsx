@@ -1,55 +1,79 @@
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import htmlToDraft from "html-to-draftjs";
-import draftjsToHtml from "draftjs-to-html";
-import dynamic from "next/dynamic";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
-import { EditorProps } from "react-draft-wysiwyg";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-
-const Editor = dynamic<EditorProps>(() => import("react-draft-wysiwyg").then(mod => mod.Editor), {
-  ssr: false,
-});
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { addPhoto } from "@/app/apis/notice";
 
 function ContentEditor({
   initialState,
-  setContentState,
+  updateContent,
 }: {
-  initialState?: string;
-  setContentState: Dispatch<SetStateAction<any>>;
+  initialState: string;
+  updateContent: (data: string) => void;
 }) {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const updateTextDescription = (state: EditorState) => {
-    setEditorState(state);
-    const html = draftjsToHtml(convertToRaw(state.getCurrentContent()));
-    setContentState((prevState: any) => ({ ...prevState, content: html }));
+  type CustomUploadAdapter = {
+    upload: () => Promise<{ default: string }>;
   };
 
-  useEffect(() => {
-    if (!initialState) return;
-    const blocksFromHtml = htmlToDraft(initialState);
-    if (blocksFromHtml) {
-      const { contentBlocks, entityMap } = blocksFromHtml;
-      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-      const newEditorState = EditorState.createWithContent(contentState);
-      setEditorState(newEditorState);
-    }
-  }, []);
+  function customUploadAdapter(loader: any): CustomUploadAdapter {
+    return {
+      upload() {
+        return new Promise((resolve, reject) => {
+          const formData = new FormData();
+          loader.file.then((file: any) => {
+            formData.append("photo", file);
 
+            addPhoto(formData)
+              .then((res: any) => {
+                resolve({
+                  default: res.path,
+                });
+              })
+              .catch((err: any) => reject(err));
+          });
+        });
+      },
+    };
+  }
+
+  function uploadPlugin(editor: any) {
+    editor.plugins.get("FileRepository").createUploadAdapter = (loader: any) => {
+      return customUploadAdapter(loader);
+    };
+  }
+  console.log(initialState);
   return (
-    <Editor
-      toolbar={{
-        options: ["inline", "fontSize", "fontFamily", "list", "textAlign"],
-      }}
-      placeholder="게시글을 작성해주세요"
-      editorState={editorState}
-      onEditorStateChange={updateTextDescription}
-      localization={{ locale: "ko" }}
-      editorStyle={{
-        height: "540px",
-        width: "100%",
-        padding: "10px 20px",
-      }}
-    />
+    <div className="mb-10">
+      <CKEditor
+        editor={ClassicEditor}
+        config={{
+          initialData: initialState,
+          language: "ko",
+          extraPlugins: [uploadPlugin],
+          toolbar: {
+            items: [
+              "undo",
+              "redo",
+              "|",
+              "fontSize",
+              "bold",
+              "italic",
+              "|",
+              "link",
+              "uploadImage",
+              "blockQuote",
+              "codeBlock",
+              "|",
+              "bulletedList",
+              "numberedList",
+            ],
+            shouldNotGroupWhenFull: false,
+          },
+        }}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          updateContent(data);
+        }}
+      />
+    </div>
   );
 }
 
