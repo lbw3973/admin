@@ -49,10 +49,7 @@ function DetailFaqPage({ params: { slug } }: { params: { slug: string } }) {
           <h3 className="mr-2 w-[40px] font-bold text-white">유형</h3>
           <div className="w-full p-2 py-1 font-bold text-white">{detailFaq.label}</div>
         </div>
-        <div
-          className="flex h-[614px] items-center justify-center p-4"
-          dangerouslySetInnerHTML={{ __html: detailFaq.content }}
-        />
+        <div className="contentArea" dangerouslySetInnerHTML={{ __html: detailFaq.content }} />
       </div>
     </div>
   );

@@ -5,7 +5,9 @@ import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"), {
+  ssr: false,
+});
 function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
   const [updateState, setUpdateState] = useState({ id: Number(slug), title: "", content: "" });
   const router = useRouter();
@@ -33,6 +35,10 @@ function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
     updateMutate(updateState);
   };
 
+  const updateContent = (data: string) => {
+    setUpdateState({ ...updateState, content: data });
+  };
+
   useEffect(() => {
     if (!detailFaq) return;
     setUpdateState({ ...detailFaq });
@@ -43,7 +49,12 @@ function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
     <div>
       <div className="w-full">
         <div className="flex h-[52px] items-center justify-between bg-[#425C6F] p-4 ">
-          <input defaultValue={detailFaq.title} className="w-full p-2 py-1 font-bold" onChange={titleChangeHandler} />
+          <input
+            defaultValue={detailFaq.title}
+            placeholder="공지사항 제목을 입력해주세요"
+            className="w-full p-2 py-1 font-bold"
+            onChange={titleChangeHandler}
+          />
           <div className="ml-5 w-[280px] ">
             <button
               onClick={cancelHandler}
@@ -60,7 +71,7 @@ function UpdateNoticePage({ params: { slug } }: { params: { slug: string } }) {
           </div>
         </div>
 
-        <ContentEditor initialState={updateState.content} setContentState={setUpdateState} />
+        <ContentEditor initialState={updateState.content} updateContent={updateContent} />
       </div>
     </div>
   );

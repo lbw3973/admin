@@ -1,6 +1,8 @@
 "use client";
 import { UpdateFaqProps, getFaqitem, updateFaqDetail } from "@/app/apis/faq";
-const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"), {
+  ssr: false,
+});
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import dynamic from "next/dynamic";
@@ -37,6 +39,10 @@ function UpdateFaqPage({ params: { slug } }: { params: { slug: string } }) {
     updateMutate(createState);
   };
 
+  const updateContent = (data: string) => {
+    setCreateState({ ...createState, content: data });
+  };
+
   useEffect(() => {
     if (!detailFaq) return;
     setCreateState({ ...detailFaq });
@@ -68,7 +74,7 @@ function UpdateFaqPage({ params: { slug } }: { params: { slug: string } }) {
           <span className="mr-[3px] w-[40px] font-bold text-white">유형</span>
           <input className="w-full p-2 py-1 font-bold" defaultValue={detailFaq.label} onChange={labelChangeHandler} />
         </div>
-        <ContentEditor initialState={createState.content} setContentState={setCreateState} />
+        <ContentEditor initialState={createState.content} updateContent={updateContent} />
       </div>
     </div>
   );

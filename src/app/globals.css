@@ -68,3 +68,26 @@
     @apply outline-none;
   }
 }
+
+.ck-editor__editable {
+  height: 608px;
+  padding: 20px !important;
+}
+.ck-editor__editable ol,
+.ck-editor__editable ul {
+  list-style-position: inside;
+}
+
+.contentArea {
+  height: 614px;
+  overflow-y: scroll;
+  padding: 16px;
+}
+.contentArea ul {
+  list-style: inside;
+}
+
+.contentArea ol {
+  list-style: number;
+  list-style-position: inside;
+}

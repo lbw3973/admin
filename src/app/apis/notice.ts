@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { instance } from "./axios";
+import { formInstance, instance } from "./axios";
 
 export const getNoticeList = async (pageParam: number) => {
   try {
@@ -59,5 +59,14 @@ export const deleteNoticeDetail = async (id: number) => {
     return res.data;
   } catch (error: any) {
     throw new AxiosError(error);
+  }
+};
+
+export const addPhoto = async (formData: FormData) => {
+  try {
+    const res = await formInstance.post("/photo", formData);
+    return res.data.data;
+  } catch (error: any) {
+    throw new AxiosError(error.response.data);
   }
 };

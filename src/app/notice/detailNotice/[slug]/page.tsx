@@ -46,10 +46,7 @@ function DetailNoticePage({ params: { slug } }: { params: { slug: string } }) {
             </button>
           </div>
         </div>
-        <div
-          className="flex h-[614px] items-center justify-center p-4"
-          dangerouslySetInnerHTML={{ __html: detailNotice.content }}
-        />
+        <div className="contentArea" dangerouslySetInnerHTML={{ __html: detailNotice.content }} />
       </div>
     </div>
   );

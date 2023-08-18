@@ -41,7 +41,7 @@ function FixedLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <main>
-      <header className="min-width-[1124px] fixed left-[240px] top-0 flex h-[50px] w-[calc(100vw-240px)] items-center bg-white">
+      <header className="min-width-[1124px] fixed left-[240px] top-0 z-10 flex h-[50px] w-[calc(100vw-240px)] items-center bg-white">
         <div className="relative flex w-[1124px] items-center justify-end">
           <button className=" h-[30px] w-[30px] cursor-pointer object-contain" onClick={handleClickInfo}>
             <Image src={admin} alt="user" />
@@ -53,7 +53,7 @@ function FixedLayout({ children }: { children: React.ReactNode }) {
           )}
         </div>
       </header>
-      <nav className="sticky left-0 top-0 h-[100vh] w-60 bg-primary-normal px-5 py-[50px]">
+      <nav className="sticky left-0 top-0 z-10 h-[100vh] w-60 bg-primary-normal px-5 py-[50px]">
         <Image
           src={Logo}
           alt="Logo"

@@ -1,6 +1,8 @@
 "use client";
 import { CreateNoticeProps, createNoticeDetail } from "@/app/apis/notice";
-const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"));
+const ContentEditor = dynamic(() => import("@/components/common/ContentEditor"), {
+  ssr: false,
+});
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import dynamic from "next/dynamic";
@@ -26,6 +28,10 @@ function CreateNoticePage() {
     router.back();
   };
 
+  const updateContent = (data: string) => {
+    setCreateState({ ...createState, content: data });
+  };
+
   const createHandler = () => {
     if (createState.title === "" || createState.content === "") {
       alert("작성하지 않은 곳이 있습니다. 다시 확인해주세요.");
@@ -37,7 +43,11 @@ function CreateNoticePage() {
     <div>
       <div className="w-full ">
         <div className="flex h-[52px] items-center justify-between bg-[#425C6F] p-4 ">
-          <input className="w-full p-2 py-1 font-bold" onChange={titleChangeHandler} />
+          <input
+            className="w-full p-2 py-1 font-bold"
+            placeholder="공지사항 제목을 입력해주세요"
+            onChange={titleChangeHandler}
+          />
           <div className="ml-5 w-[280px] ">
             <button
               onClick={deleteHandler}
@@ -53,7 +63,7 @@ function CreateNoticePage() {
             </button>
           </div>
         </div>
-        <ContentEditor initialState={createState.content} setContentState={setCreateState} />
+        <ContentEditor initialState={createState.content} updateContent={updateContent} />
       </div>
     </div>
   );
