@@ -11,6 +11,8 @@ const TH_STYLE = "rounded-[1px] h-[52px] border-r-1 border-[#E0E0E0] font-normal
 function TableBody({ item, index, page }: { item: IJoinListData; index: number; page: number }) {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isApprove, setIsApprove] = useState(false);
+  const [message, setMessage] = useState("");
   const [modalContent, setModalContent] = useState({
     content: "",
     confirmText: "",
@@ -22,7 +24,6 @@ function TableBody({ item, index, page }: { item: IJoinListData; index: number; 
 
   const { mutate } = useMutation(AccpetJoinPB, {
     onSuccess: () => {
-      setIsModalOpen(false);
       queryClient.invalidateQueries(["joinList"]);
     },
     onError: () => {},
@@ -31,19 +32,31 @@ function TableBody({ item, index, page }: { item: IJoinListData; index: number; 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     const buttonEl = e.target as HTMLButtonElement;
     const accept = buttonEl.id === "Accept";
+    if (accept) {
+      setModalContent({
+        content: `${buttonEl.innerText} 하시겠습니까?`,
+        confirmText: "확인",
+        cancelText: "취소",
+        confirmFn: () => {
+          mutate({ approve: accept, id: item.id.toString() });
+        },
+        cancelFn: () => {
+          setIsModalOpen(false);
+        },
+      });
+      setIsModalOpen(true);
+    }
+    {
+      setIsApprove(true);
+    }
+  };
 
-    setModalContent({
-      content: `${buttonEl.innerText} 하시겠습니까?`,
-      confirmText: "확인",
-      cancelText: "취소",
-      confirmFn: () => {
-        mutate({ approve: accept, id: item.id.toString() });
-      },
-      cancelFn: () => {
-        setIsModalOpen(false);
-      },
-    });
-    setIsModalOpen(true);
+  const handleRefuse = () => {
+    mutate({ approve: false, id: item.id.toString(), msg: message });
+  };
+
+  const handleChangeMsg = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
   };
 
   return (
@@ -77,6 +90,31 @@ function TableBody({ item, index, page }: { item: IJoinListData; index: number; 
         <ModalLayout handleCloseModal={() => setIsCardOpen(false)}>
           <p className="mb-4 font-bold">{item.name} 의 명함</p>
           <Image className="max-h-[400px]" src={item.businessCard} alt="businessCard" width={500} height={400} />
+        </ModalLayout>
+      )}
+      {isApprove && (
+        <ModalLayout handleCloseModal={() => setIsApprove(false)}>
+          <p className="mb-2 font-bold">{item.name} 의 가입을 거절하시겠습니까?</p>
+          <p className="mb-2">
+            거절사유를 입력해주세요. <span className="text-sm text-gray-normal">ex) 명함 화질 불량</span>
+          </p>
+          <p className="mb-6 text-xs font-bold"> * 사유 입력을 안하게 되면 기본 문구가 전송됩니다.</p>
+          <span className="text-sm text-gray-normal"></span>
+          <div>
+            <p className="mb-4 font-bold">거절 사유</p>
+            <textarea
+              className="border w-full rounded-lg border-1 p-4"
+              cols={70}
+              rows={10}
+              onChange={handleChangeMsg}
+              placeholder="자세한 승인 거절 사유에 대해서는 Money Bridge 측으로 문의해주세요."
+            ></textarea>
+            <div className="flex justify-end">
+              <button className="mt-2 rounded-[8px] bg-[#642626] p-3 text-white" onClick={handleRefuse}>
+                거절하기
+              </button>
+            </div>
+          </div>
         </ModalLayout>
       )}
       {isModalOpen && <ButtonModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} modalContents={modalContent} />}
