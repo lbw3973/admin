@@ -19,10 +19,20 @@ export const getJoinList = async (pageParam: number) => {
   }
 };
 
-export const AccpetJoinPB = async ({ approve, id }: { approve: boolean; id: string }) => {
+export const AccpetJoinPB = async ({ approve, id, msg }: { approve: boolean; id: string; msg?: string }) => {
   try {
-    const res = await instance.post(`/admin/pb/${id}?approve=${approve}`);
-    return res;
+    if (approve) {
+      const res = await instance.post(`/admin/pb/${id}`, {
+        approve,
+      });
+      return res;
+    } else {
+      const res = await instance.post(`/admin/pb/${id}`, {
+        approve,
+        msg,
+      });
+      return res;
+    }
   } catch (error: any) {
     throw new AxiosError(error);
   }
