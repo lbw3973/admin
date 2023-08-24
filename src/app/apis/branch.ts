@@ -2,7 +2,7 @@ import { IReqBranch } from "@/types/branch";
 import { formInstance, instance } from "./axios";
 
 export const registerBranch = async (data: IReqBranch) => {
-  const res = await instance.post("/admin/branch", data);
+  const res = await instance.post("/branch", data);
   return res.data;
 };
 
