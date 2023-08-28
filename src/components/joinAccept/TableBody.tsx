@@ -1,6 +1,6 @@
 import { IJoinListData } from "@/types/joinAccept";
 import ModalLayout from "../common/ModalLayout";
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AccpetJoinPB } from "@/app/apis/joinAccept";
 import ButtonModal from "../common/ButtonModal";
@@ -29,26 +29,19 @@ function TableBody({ item, index, page }: { item: IJoinListData; index: number; 
     onError: () => {},
   });
 
-  const handleClick = (e: MouseEvent<HTMLElement>) => {
-    const buttonEl = e.target as HTMLButtonElement;
-    const accept = buttonEl.id === "Accept";
-    if (accept) {
-      setModalContent({
-        content: `${buttonEl.innerText} 하시겠습니까?`,
-        confirmText: "확인",
-        cancelText: "취소",
-        confirmFn: () => {
-          mutate({ approve: accept, id: item.id.toString() });
-        },
-        cancelFn: () => {
-          setIsModalOpen(false);
-        },
-      });
-      setIsModalOpen(true);
-    }
-    {
-      setIsApprove(true);
-    }
+  const handleAccopt = () => {
+    setModalContent({
+      content: `승인 하시겠습니까?`,
+      confirmText: "확인",
+      cancelText: "취소",
+      confirmFn: () => {
+        mutate({ approve: true, id: item.id.toString() });
+      },
+      cancelFn: () => {
+        setIsModalOpen(false);
+      },
+    });
+    setIsModalOpen(true);
   };
 
   const handleRefuse = () => {
@@ -76,11 +69,17 @@ function TableBody({ item, index, page }: { item: IJoinListData; index: number; 
               명함 확인
             </button>
           </td>
-          <td onClick={handleClick} className={`${TH_STYLE} grid w-[212px] grid-cols-2 gap-2 px-2 text-sm text-white`}>
-            <button id="Accept" className="rounded-[8px] bg-[#27508C]">
+          <td className={`${TH_STYLE} grid w-[212px] grid-cols-2 gap-2 px-2 text-sm text-white`}>
+            <button id="Accept" onClick={handleAccopt} className="rounded-[8px] bg-[#27508C]">
               승인
             </button>
-            <button id="Reject" className="rounded-[8px] bg-[#642626]">
+            <button
+              id="Reject"
+              onClick={() => {
+                setIsApprove(true);
+              }}
+              className="rounded-[8px] bg-[#642626]"
+            >
               거절
             </button>
           </td>
