@@ -76,55 +76,55 @@ money-bridge
 
 |**대시보드**|
 | --- |
-|<p align="center"><img src="[https://github.com/FINALALT1/admin/assets/100064540/4892e46f-7f8d-4c26-9b84-e467b17a5bfe](https://github-production-user-asset-6210df.s3.amazonaws.com/100064540/253518992-4892e46f-7f8d-4c26-9b84-e467b17a5bfe.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231208%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231208T054518Z&X-Amz-Expires=300&X-Amz-Signature=efc8f14217ad92d2f1002b38d4fbc8f1fb4cb89ddbe46483a21ce7305be26f88&X-Amz-SignedHeaders=host&actor_id=75530371&key_id=0&repo_id=658884460)"></p>
+|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/29445419-3911-4600-8b56-947b4a552b46"/>
+></p>
 |<p align="center">대시보드에서는 현재 상담현황 및 승인 대기 PB 수를 확인할 수 있습니다.</p>|
 
 <br />
 
 |**PB 회원가입 승인**|
 | --- | 
-|<p align="center"><img src="https://github.com/FINALALT1/admin/assets/100064540/7c1bbe83-ce15-4c7f-98e1-0da79fca8163"></p>|
+|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/f79c919c-73da-4292-b015-93803d38a4bd"></p>|
 |<p align="center">실제 PB인지 명함 확인 후 승인 및 거절을 할 수 있습니다.</p>|
 
 <br />
 
 |**회원 관리**|
 | --- |
-|<p align="center"><img src="https://github.com/FINALALT1/admin/assets/100064540/ee7787c3-4107-4a31-8f7d-9d4e32302354" ></p>|
+|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/a9376089-14db-40ff-a7aa-555656db4ab8" ></p>|
 |<p align="center">PB, 투자자 별로 관리가 가능하고 관리자 권한 여부를 지정할 수 있습니다.</p>|
 
 <br />
 
 |**상담 현황**|
 | --- |
-|<p align="center"><img src="https://github.com/FINALALT1/admin/assets/100064540/cf0047c9-1773-4974-9b0b-01b4ecb0c510"></p>|
+|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/bd4e3b09-5e46-4ca0-bbf8-a8db46cf8295"></p>|
 |<p align="center">자세한 상담 현황들을 개별적으로 확인할 수 있습니다.</p>|
 
 <br />
 
 |**게시글 관리**|
 | --- |
-|<p align="center"><img src="https://github.com/FINALALT1/admin/assets/100064540/8bd1d06d-c07f-4550-b45e-9f27a9066e6b"></p>|
+|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/82e22288-9d71-4cf4-a335-82dffaeb8849"></p>|
 |<p align="center">작성된 게시글을 확인할 수 있으며, 댓글 관리 또한 가능합니다.</p>|
 
 <br />
 
 |**지점 관리**|
 | --- |
-|<p align="center"><img src="https://github.com/FINALALT1/admin/assets/100064540/574ad9d4-0820-4c2a-899d-20921caac105"></p>|
+|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/2d5453e3-959a-42cb-a6af-23925afd52aa"></p>|
 |<p align="center">증권자 지점을 등록, 수정, 삭제할 수 있습니다.</p>|
 
 <br />
 
-
 |**공지사항 관리**|
 | --- |
-|<p align="center"><img src="https://github.com/FINALALT1/admin/assets/100064540/03e0bbda-9271-4549-948b-fa4f21b18c94"></p>|
+|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/f4495f6e-e560-4f90-b3f8-6826f5c57d73"></p>|
 |<p align="center">공지사항을 등록, 수정, 삭제할 수 있습니다.</p>|
 
 <br />
 
 |**FAQ 관리**|
 | --- |
-|<p align="center"><img src="https://github.com/FINALALT1/admin/assets/100064540/4efca2d6-6331-4f02-8b2d-b564f8643996"></p>
+|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/984848c8-462c-4c96-ba25-eabd904e23de"></p>
 |<p align="center">FAQ를 등록, 수정, 삭제할 수 있습니다.</p>|
