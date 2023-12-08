@@ -76,8 +76,7 @@ money-bridge
 
 |**대시보드**|
 | --- |
-|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/29445419-3911-4600-8b56-947b4a552b46"/>
-></p>
+|<p align="center"><img src="https://github.com/lbw3973/admin/assets/75530371/29445419-3911-4600-8b56-947b4a552b46"/></p>
 |<p align="center">대시보드에서는 현재 상담현황 및 승인 대기 PB 수를 확인할 수 있습니다.</p>|
 
 <br />
