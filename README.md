@@ -76,7 +76,7 @@ money-bridge
 
 |**대시보드**|
 | --- |
-|<p align="center"><img src="https://github.com/FINALALT1/admin/assets/100064540/4892e46f-7f8d-4c26-9b84-e467b17a5bfe"></p>
+|<p align="center"><img src="[https://github.com/FINALALT1/admin/assets/100064540/4892e46f-7f8d-4c26-9b84-e467b17a5bfe](https://github-production-user-asset-6210df.s3.amazonaws.com/100064540/253518992-4892e46f-7f8d-4c26-9b84-e467b17a5bfe.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231208%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231208T054518Z&X-Amz-Expires=300&X-Amz-Signature=efc8f14217ad92d2f1002b38d4fbc8f1fb4cb89ddbe46483a21ce7305be26f88&X-Amz-SignedHeaders=host&actor_id=75530371&key_id=0&repo_id=658884460)"></p>
 |<p align="center">대시보드에서는 현재 상담현황 및 승인 대기 PB 수를 확인할 수 있습니다.</p>|
 
 <br />
