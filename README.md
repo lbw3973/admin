@@ -12,7 +12,7 @@
 
 #### 🔗 배포 사이트
 
-- [💻 PB 투자자 매칭 플랫폼 💻](https://www.moneybridge.co.kr/)
+- [💻 PB 투자자 매칭 플랫폼 💻](https://admin.moneybridge.co.kr/)
 - 관리자 로그인 후 관리자만 접근가능
 
 <br />
